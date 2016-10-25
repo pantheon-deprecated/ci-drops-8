@@ -2,6 +2,7 @@
     "name": "pantheon-systems/drops-8",
     "description": "CI tests for the drops-8 repository",
     "license": "MIT",
+    "bin":["scripts/run-behat"],
     "require": {
         "php": ">=5.5.0"
     },

@@ -18,9 +18,6 @@ default:
       goutte: ~
       selenium2: ~
       files_path: './data-files'
-      base_url: http://ENV-SITE.pantheonsite.io/
     Drupal\DrupalExtension:
       blackbox: ~
       api_driver: 'drush'
-      drush:
-        alias: '@pantheon-ci.SITE.ENV'
