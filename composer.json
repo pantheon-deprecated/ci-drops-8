@@ -1,0 +1,17 @@
+{
+    "name": "pantheon-systems/drops-8",
+    "description": "CI tests for the drops-8 repository",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "require-dev": {
+        "behat/behat": "3.*",
+        "behat/mink": "*",
+        "drupal/drupal-extension": "*",
+        "drush/drush": "*",
+        "behat/mink-extension": "*",
+        "behat/mink-goutte-driver": "*",
+        "phpunit/phpunit": ">=3.5"
+    }
+}

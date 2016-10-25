@@ -71,7 +71,7 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
     {
         $site = getenv('PSITE');
         $env = getenv('PENV');
-        passthru("drush @pantheon-ci.$site.$env --strict=0 site-install --yes standard --site-name='$arg1' --account-name=admin");
+        passthru("terminus --yes --site=$site --env=$env drush '--yes site-install standard --site-name=\"$arg1\" --account-name=admin'");
     }
 
     /**
@@ -81,7 +81,7 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
     {
         $site = getenv('PSITE');
         $env = getenv('PENV');
-        passthru("drush @pantheon-ci.$site.$env --strict=0 --yes $arg1");
+        passthru("terminus --yes --site=$site --env=$env drush '--yes $arg1'");
     }
 
     /**
@@ -102,7 +102,7 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
     {
         $site = getenv('PSITE');
         $env = getenv('PENV');
-        passthru("drush @pantheon-ci.$site.$env --strict=0 config-export --yes");
+        passthru("terminus --yes --site=$site --env=$env drush '--yes config-export");
     }
 
     /**
