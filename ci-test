@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+$HOME = getenv("HOME");
+
+// Add the composer bin dir to the PATH
+$PATH = dirname(__DIR__) . "/bin:" . getenv("PATH");
+putenv("PATH=$PATH");
+
+$behat_config = $argv[1];
+if (empty($behat_config)) {
+  $behat_config = "behat.yml";
+}
+
+//
+// TODO: We should have a way for users to select other locations,
+// so that they may copy the pattern used in 'pantheon-tests' and
+// use it to create their own tests.
+//
+chdir(__DIR__);
+passthru("behat --config=$behat_config");
