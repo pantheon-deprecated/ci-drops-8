@@ -58,8 +58,8 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
      */
     public function iHaveWipedTheSite()
     {
-        $site = getenv('PSITE');
-        $env = getenv('PENV');
+        $site = getenv('TERMINUS_SITE');
+        $env = getenv('TERMINUS_ENV');
 
         passthru("terminus --yes --site=$site --env=$env site wipe");
     }
@@ -69,8 +69,8 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
      */
     public function iHaveReinstalled($arg1)
     {
-        $site = getenv('PSITE');
-        $env = getenv('PENV');
+        $site = getenv('TERMINUS_SITE');
+        $env = getenv('TERMINUS_ENV');
         passthru("terminus --yes --site=$site --env=$env drush '--yes site-install standard --site-name=\"$arg1\" --account-name=admin'");
     }
 
@@ -79,8 +79,8 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
      */
     public function iHaveRunTheDrushCommand($arg1)
     {
-        $site = getenv('PSITE');
-        $env = getenv('PENV');
+        $site = getenv('TERMINUS_SITE');
+        $env = getenv('TERMINUS_ENV');
         passthru("terminus --yes --site=$site --env=$env drush '--yes $arg1'");
     }
 
@@ -89,8 +89,8 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
      */
     public function iHaveCommittedMyChangesWithComment($arg1)
     {
-        $site = getenv('PSITE');
-        $env = getenv('PENV');
+        $site = getenv('TERMINUS_SITE');
+        $env = getenv('TERMINUS_ENV');
 
         passthru("terminus --yes --site=$site --env=$env site code commit --message='$arg1'");
     }
@@ -100,8 +100,8 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
      */
     public function iHaveExportedConfiguration()
     {
-        $site = getenv('PSITE');
-        $env = getenv('PENV');
+        $site = getenv('TERMINUS_SITE');
+        $env = getenv('TERMINUS_ENV');
         passthru("terminus --yes --site=$site --env=$env drush '--yes config-export");
     }
 
