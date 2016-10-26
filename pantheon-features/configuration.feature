@@ -1,4 +1,4 @@
-Feature: Homepage
+Feature: Configuration Manager
   In order to know that configuration is working
   As a website user
   I need to be able to export and import configuration
