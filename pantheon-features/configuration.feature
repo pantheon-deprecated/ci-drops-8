@@ -30,4 +30,4 @@ Feature: Homepage
 
   Scenario: Make sure site went back to the way it originally was
     Given I am on "/"
-    Then I should see not "Footer menu"
+    Then I should not see "Footer menu"
