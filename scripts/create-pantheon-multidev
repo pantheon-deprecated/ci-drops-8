@@ -12,4 +12,7 @@ git remote show | grep -q pantheon || git remote add pantheon $(terminus site co
 git fetch pantheon
 git checkout -b $TERMINUS_ENV
 git push pantheon $TERMINUS_ENV -f
+
+# We have to wait for the code converge to finish before setting sftp mode. Maybe.
+sleep 10
 terminus site set-connection-mode --mode=sftp
