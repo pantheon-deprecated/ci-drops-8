@@ -1,8 +1,13 @@
 #!/bin/bash
+
+# Set the $PATH to include the global composer bin directory.
+PATH=$PATH:~/.composer/vendor/bin
+
+# Log in and create a new environment for this test.
 terminus auth login --machine-token=$TERMINUS_TOKEN
 terminus site create-env --to-env=$TERMINUS_ENV --from-env=dev
 
-# Somehow the remote might already be there
+# Somehow the remote might already be there.
 git remote show | grep -q pantheon || git remote add pantheon $(terminus site connection-info --field=git_url)
 git fetch pantheon
 git checkout -b $TERMINUS_ENV
