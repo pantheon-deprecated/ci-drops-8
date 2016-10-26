@@ -17,5 +17,5 @@ git checkout -b $TERMINUS_ENV
 git push pantheon $TERMINUS_ENV -f
 
 # We have to wait for the code converge to finish before setting sftp mode. Maybe.
-sleep 10
+sleep 60
 terminus site set-connection-mode --mode=sftp
