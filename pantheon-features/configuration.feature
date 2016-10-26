@@ -5,7 +5,7 @@ Feature: Homepage
 
   Scenario: Control to make sure site has default configuration
     Given I am on "/"
-    Then I should see "Powered by Drupal"
+    Then I should not see "A site slogan set through Drush"
 
   @api
   Scenario: Control to make sure we are set up to test configuration
@@ -15,9 +15,9 @@ Feature: Homepage
     Then I should see "There are no configuration changes to import."
 
   Scenario: Set up and change something to test
-    Given I have run the drush command "config-set block.block.bartik_powered region \"\-1\""
+    Given I have run the drush command "config-set -y system.site slogan 'A site slogan set through Drush'"
     And I am on "/"
-    Then I should not see "Powered by Drupal"
+    Then I should see "A site slogan set through Drush"
 
   @api
   Scenario: Import configuration files to undo previous change
@@ -29,4 +29,4 @@ Feature: Homepage
 
   Scenario: Make sure site went back to the way it originally was
     Given I am on "/"
-    Then I should see "Powered by Drupal"
+    Then I should not see "A site slogan set through Drush"
