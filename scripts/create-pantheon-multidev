@@ -13,6 +13,9 @@ terminus auth login --machine-token=$TERMINUS_TOKEN
 git remote show | grep -q pantheon || git remote add pantheon $(terminus site connection-info --field=git_url --env=dev)
 git fetch pantheon
 git checkout -b $TERMINUS_ENV
+composer require drush-ops/behat-drush-endpoint
+git add -A .
+git commit -m "Add behat-drush-endpoint for test."
 git push pantheon $TERMINUS_ENV -f
 
 # Create a new environment for this test.
