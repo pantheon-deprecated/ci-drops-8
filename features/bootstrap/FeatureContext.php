@@ -2,6 +2,8 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Drupal\DrupalExtension\Context\MinkContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
@@ -22,6 +24,15 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
     // Initialize your context here
   }
 
+  /** @var \Drupal\DrupalExtension\Context\MinkContext */
+  private $minkContext;
+  /** @BeforeScenario */
+  public function gatherContexts(BeforeScenarioScope $scope)
+  {
+      $environment = $scope->getEnvironment();
+      $this->minkContext = $environment->getContext('Drupal\DrupalExtension\Context\MinkContext');
+  }
+
 //
 // Place your definition and hook methods here:
 //
@@ -32,6 +43,17 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
 //    doSomethingWith($stuff);
 //  }
 //
+
+    /**
+     * Fills in form field with specified id|name|label|value
+     * Example: And I enter the value of the env var "TEST_PASSWORD" for "edit-account-pass-pass1"
+     *
+     * @Given I enter the value of the env var :arg1 for :arg2
+     */
+    public function fillFieldWithEnv($value, $field)
+    {
+        $this->minkContext->fillField($field, getenv($value));
+    }
 
     /**
      * @Given I wait for the progress bar to finish
