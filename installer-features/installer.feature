@@ -28,4 +28,5 @@ Feature: Installer
     And I enter "password" for "edit-account-pass-pass2"
     And I enter "john.doe@example.com" for "edit-account-mail"
     And I press "Save and continue"
+    And I visit "/"
     Then I should see "Welcome to Example Dot Com"
