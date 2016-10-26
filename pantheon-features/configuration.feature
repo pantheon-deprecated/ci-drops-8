@@ -15,18 +15,19 @@ Feature: Homepage
     Then I should see "There are no configuration changes to import."
 
   Scenario: Set up and change something to test
-    Given I have run the drush command "config-set block.block.bartik_powered region 0"
+    Given I have run the drush command "config-set -y block.block.bartik_footer settings.label_display visible"
     And I am on "/"
-    Then I should not see "Powered by Drupal"
+    Then I should see "Footer menu"
 
   @api
   Scenario: Import configuration files to undo previous change
     Given I am logged in as a user with the "administrator" role
     And I am on "/admin/config/development/configuration"
     And I press "Import all"
+
     And I wait for the progress bar to finish
     Then I should see "The configuration was imported successfully"
 
   Scenario: Make sure site went back to the way it originally was
     Given I am on "/"
-    Then I should see "Powered by Drupal"
+    Then I should not see "Footer menu"

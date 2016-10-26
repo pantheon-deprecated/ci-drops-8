@@ -79,9 +79,12 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
      */
     public function iHaveRunTheDrushCommand($arg1)
     {
-        $site = getenv('TERMINUS_SITE');
-        $env = getenv('TERMINUS_ENV');
-        passthru("terminus --yes --site=$site --env=$env drush '--yes $arg1'");
+        $return = '';
+        $output = array();
+        exec("terminus drush '$arg1'", $output, $return);
+        // echo $return;
+        // print_r($output);
+
     }
 
     /**
@@ -100,9 +103,9 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
      */
     public function iHaveExportedConfiguration()
     {
-        $site = getenv('TERMINUS_SITE');
-        $env = getenv('TERMINUS_ENV');
-        passthru("terminus --yes --site=$site --env=$env drush '--yes config-export");
+        $return = '';
+        $output = array();
+        exec("terminus drush 'config-export -y'", $output, $return);
     }
 
     /**
