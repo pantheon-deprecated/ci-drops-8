@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit immediately on errors, and echo commands as they are executed.
+set -ex
+
 # Set the $PATH to include the global composer bin directory.
 PATH=$PATH:~/.composer/vendor/bin
 
