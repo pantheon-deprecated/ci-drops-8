@@ -43,7 +43,7 @@ Feature: Update database
     Then I should see "Drupal database update"
     When I follow "Continue"
     Then I should see "Changing the data structure of the module's configuration"
-    When I press "Apply pending updates"
+    When I follow "Apply pending updates"
     And I wait for the progress bar to finish
     Then I should see "Updates were attempted"
     # TODO: find some text that would always appear if there were an error
