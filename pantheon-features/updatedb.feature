@@ -11,6 +11,12 @@ Feature: Update database
     When I follow "Continue"
     Then I should see "No pending updates."
 
+  # Install Simple XML Sitemap 8.x-2.3.  This module already has an update
+  # available (8.x-2.6, or later), and after updating there will be at least
+  # one update hook to run.  This test is a little fragile, as a future minor
+  # update of Drupal might break version 8.x-2.3.  Hopefully such an occurance
+  # will be rare. We could improve this test by using our own custom module
+  # designed specifically for this test, that used a minimum of Drupal APIs.
   @api
   Scenario: Determine whether a module can be installed and updated with its update_N hooks
     Given I am logged in as a user with the "administrator" role
@@ -26,7 +32,7 @@ Feature: Update database
     Then I should see "Module Simple XML Sitemap has been enabled"
     When I am on "/admin/modules/update"
     Then I should see "8.x-2.3"
-    When I check the box "Select all rows in this table"
+    When I check the box "edit-projects-simple-sitemap"
     And I press "Download these updates"
     And I wait for the progress bar to finish
     Then I should see "Updates downloaded successfully"
