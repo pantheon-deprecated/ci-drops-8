@@ -41,7 +41,7 @@ Feature: Update database
     Then I should see "Update was completed successfully"
     When I follow "Run database updates"
     Then I should see "Drupal database update"
-    When I press "Continue"
+    When I follow "Continue"
     Then I should see "Changing the data structure of the module's configuration"
     When I press "Apply pending updates"
     And I wait for the progress bar to finish
