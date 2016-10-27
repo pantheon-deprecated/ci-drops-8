@@ -26,7 +26,7 @@ Feature: Update database
     Then I should see "Module Simple XML Sitemap has been enabled"
     When I am on "/admin/modules/update"
     Then I should see "8.x-2.3"
-    When I check the box "Simple XML Sitemap"
+    When I check the box "Select all rows in this table"
     And I press "Download these updates"
     And I wait for the progress bar to finish
     Then I should see "Updates downloaded successfully"
@@ -40,4 +40,5 @@ Feature: Update database
     When I press "Apply pending updates"
     And I wait for the progress bar to finish
     Then I should see "Updates were attempted"
+    # TODO: find some text that would always appear if there were an error
 
