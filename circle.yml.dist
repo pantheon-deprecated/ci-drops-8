@@ -34,5 +34,6 @@ dependencies:
 test:
   pre:
   override:
+    - cd core && ../vendor/bin/phpunit --testsuite=unit
     - $TESTING_DIR/scripts/create-pantheon-multidev
     - cd $TESTING_DIR && ./scripts/run-behat
