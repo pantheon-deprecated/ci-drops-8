@@ -11,8 +11,10 @@ machine:
   environment:
     TERMINUS_SITE: ci-drops-8
     TERMINUS_ENV: ci-$CIRCLE_BUILD_NUM
+    MULTIDEV_DELETE_PATTERN: ^ci-
     PATH: $PATH:~/.composer/vendor/bin
     TESTING_DIR: /tmp/ci-drops-8
+
 
 dependencies:
   cache_directories:
@@ -31,8 +33,9 @@ dependencies:
     - cgr "drush/drush:~8"
     - git clone git@github.com:pantheon-systems/ci-drops-8.git $TESTING_DIR
     - cd $TESTING_DIR && composer install
+  post:
+    - $TESTING_DIR/scripts/delte-old-multidevs
 test:
-  pre:
   override:
     - cd core && ../vendor/bin/phpunit --testsuite=unit
     - $TESTING_DIR/scripts/create-pantheon-multidev

@@ -11,6 +11,7 @@ machine:
   environment:
     TERMINUS_SITE: ci-drops-8
     TERMINUS_ENV: self-$CIRCLE_BUILD_NUM
+    MULTIDEV_DELETE_PATTERN: ^self-
     PATH: $PATH:~/.composer/vendor/bin
 
 dependencies:
@@ -29,11 +30,17 @@ dependencies:
     - cgr "pantheon-systems/terminus:^0.13.3"
     - cgr "drush/drush:~8"
     - composer install
+  post:
+    - ./script/delete-old-multidevs
 test:
-  pre:
   override:
     - terminus auth login --machine-token=$TERMINUS_TOKEN
     - terminus site create-env --to-env=$TERMINUS_ENV --from-env=dev
     - terminus site set-connection-mode --mode=sftp
     # Note that the behat-drush-endpoint has already been added to the dev environment of the test site.
     - ./scripts/run-behat
+    # Note that if we do not delete our multidev environment here, then the
+    # delete-old-multidevs script will remove all but the two newest
+    # environments at the beginning of each test run. Keeping these environments
+    # around allows them to be inspected after the tests complete.
+    - terminus site delete-env --yes
