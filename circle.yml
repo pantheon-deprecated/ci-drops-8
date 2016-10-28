@@ -31,7 +31,7 @@ dependencies:
     - cgr "drush/drush:~8"
     - composer install
   post:
-    - ./script/delete-old-multidevs
+    - ./scripts/delete-old-multidevs
 test:
   override:
     - terminus auth login --machine-token=$TERMINUS_TOKEN
