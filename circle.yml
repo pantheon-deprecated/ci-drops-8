@@ -12,7 +12,6 @@ machine:
     TERMINUS_SITE: ci-drops-8
     TERMINUS_ENV: self-$CIRCLE_BUILD_NUM
     PATH: $PATH:~/.composer/vendor/bin
-    TESTING_DIR: /tmp/ci-drops-8
 
 dependencies:
   cache_directories:
