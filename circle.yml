@@ -1,0 +1,37 @@
+# This is the circle.yml file used to test the ci-drops-8 project against
+# a current, already released version of Drops-8 on the Pantheon environment.
+# For using this project to test a PR or other branch of a drops-8-derived
+# project, see the circle.yml.dist file.
+
+# https://circleci.com/docs/configuration#machine
+machine:
+  php:
+    # https://circleci.com/docs/environment#php
+    version: 7.0.7
+  environment:
+    TERMINUS_SITE: ci-drops-8
+    TERMINUS_ENV: self-$CIRCLE_BUILD_NUM
+    PATH: $PATH:~/.composer/vendor/bin
+    TESTING_DIR: /tmp/ci-drops-8
+
+dependencies:
+  cache_directories:
+    - ~/.composer/cache
+  pre:
+    # Set the PHP timezone so that Behat script does not fail.
+    # Using > instead of >> will overwrite the file and disable xdebug.
+    # xdebug makes composer slower.
+    - git config --global user.email "$GIT_EMAIL"
+    - git config --global user.name "Circle CI"
+    - echo "date.timezone = 'US/Central'"  >  /opt/circleci/php/7.0.7/etc/conf.d/xdebug.ini
+  override:
+    - composer global require "hirak/prestissimo:^0.3"
+    - composer global require "consolidation/cgr"
+    - cgr "pantheon-systems/terminus:^0.13.3"
+    - cgr "drush/drush:~8"
+    - composer install
+test:
+  pre:
+  override:
+    - ./scripts/create-pantheon-multidev
+    - ./scripts/run-behat
