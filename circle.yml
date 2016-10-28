@@ -27,7 +27,8 @@ dependencies:
   override:
     - composer global require "hirak/prestissimo:^0.3"
     - composer global require "consolidation/cgr"
-    - cgr "pantheon-systems/terminus:^0.13.3"
+    # - cgr "pantheon-systems/terminus:^0.13.3"
+    - cgr "pantheon-systems/terminus:0.12.0"
     - cgr "drush/drush:~8"
     - composer install
   post:
