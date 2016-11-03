@@ -34,7 +34,8 @@ dependencies:
     - git clone git@github.com:pantheon-systems/ci-drops-8.git $TESTING_DIR
     - cd $TESTING_DIR && composer install
   post:
-    - $TESTING_DIR/scripts/delte-old-multidevs
+    - terminus auth login --machine-token=$TERMINUS_TOKEN
+    - $TESTING_DIR/scripts/delete-old-multidevs
 test:
   override:
     - cd core && ../vendor/bin/phpunit --testsuite=unit

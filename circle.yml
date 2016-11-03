@@ -32,10 +32,10 @@ dependencies:
     - cgr "drush/drush:~8"
     - composer install
   post:
+    - terminus auth login --machine-token=$TERMINUS_TOKEN
     - ./scripts/delete-old-multidevs
 test:
   override:
-    - terminus auth login --machine-token=$TERMINUS_TOKEN
     - terminus site create-env --to-env=$TERMINUS_ENV --from-env=dev
     - terminus site set-connection-mode --mode=sftp
     # Note that the behat-drush-endpoint has already been added to the dev environment of the test site.
