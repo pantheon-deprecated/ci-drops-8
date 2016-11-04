@@ -38,7 +38,7 @@ dependencies:
     - terminus site set-connection-mode --mode=sftp
 test:
   override:
-    - terminus composer 'exec --working-dir=web/core "../../vendor/bin/phpunit --testsuite=unit --exclude-group Composer,DependencyInjection,PageCache"'
+    - terminus composer 'exec --working-dir=core "../vendor/bin/phpunit --testsuite=unit --exclude-group Composer,DependencyInjection,PageCache"'
     # Note that the behat-drush-endpoint has already been added to the dev environment of the test site.
     - ./scripts/run-behat
     # Note that if we do not delete our multidev environment here, then the
