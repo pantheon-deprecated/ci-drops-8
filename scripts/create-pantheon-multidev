@@ -11,12 +11,7 @@ git remote show | grep -q pantheon || git remote add pantheon $(terminus site co
 git fetch pantheon
 git checkout -b $TERMINUS_ENV
 
-# The behat-drush-endpoint is not included in drops-8, and we are going
-# to force-push the project-under-test over the contents of the dev site.
-# We therefore re-add the behat-drush-endpoint via composer here.
-composer require drush-ops/behat-drush-endpoint
-git add -A .
-git commit -q -m "Add behat-drush-endpoint for test."
+# Force-push the project-under-test over the contents of the dev site.
 git push -q pantheon $TERMINUS_ENV -f
 
 # Create a new environment for this test.
