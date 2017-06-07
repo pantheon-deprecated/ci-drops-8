@@ -7,7 +7,7 @@ Feature: Performance Settings
   Scenario: Check to see that page cache maximum age is not immediately configured
     Given I am logged in as a user with the "administrator" role
     Given I am on "/admin/config/development/performance"
-    Then the "select[id='edit-page-cache-maximum-age'] option[selected='selected']" element contains "no caching"
+    Then the option "no caching" from select "edit-page-cache-maximum-age" is selected
 
   @api
   Scenario: Check to see that clearing the cache prints the initial message
@@ -20,4 +20,4 @@ Feature: Performance Settings
   Scenario: Check to see that page cache maximum age has now been configured
     Given I am logged in as a user with the "administrator" role
     Given I am on "/admin/config/development/performance"
-    Then the "select[id='edit-page-cache-maximum-age'] option[selected='selected']" element contains "15 min"
+    Then the option "15 min" from select "edit-page-cache-maximum-age" is selected

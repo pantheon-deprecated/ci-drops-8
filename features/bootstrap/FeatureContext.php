@@ -56,6 +56,26 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
     }
 
     /**
+     * @Then /^the option "([^"]*)" from select "([^"]*)" is selected$/
+     */
+    public function theOptionFromSelectIsSelected($optionValue, $select)
+    {
+        $selectField = $this->getSession()->getPage()->findField($select);
+        if (null === $selectField) {
+            throw new \Exception(sprintf('The select "%s" was not found in the page %s', $select, $this->getSession()->getCurrentUrl()));
+        }
+
+        $optionField = $selectField->find('xpath', "//option[@selected='selected']");
+        if (null === $optionField) {
+            throw new \Exception(sprintf('No option is selected in the %s select in the page %s', $select, $this->getSession()->getCurrentUrl()));
+        }
+
+        if (strpos($optionField->getValue(), $optionValue)) {
+            throw new \Exception(sprintf('The option "%s" was not selected in the page %s, %s was selected', $optionValue, $this->getSession()->getCurrentUrl(), $optionField->getValue()));
+        }
+    }
+
+    /**
      * @Given I wait for the progress bar to finish
      */
     public function iWaitForTheProgressBarToFinish() {
