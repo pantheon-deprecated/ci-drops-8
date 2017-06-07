@@ -16,6 +16,7 @@ Feature: Configuration Manager
 
   Scenario: Set up and change something to test
     Given I have run the drush command "config-set -y system.site slogan 'A site slogan set through Drush'"
+    And I have run the drush command "cr -y"
     And I am on "/"
     Then I should see "A site slogan set through Drush"
 
