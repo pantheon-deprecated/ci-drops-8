@@ -26,7 +26,8 @@ Feature: Configuration Manager
     And I am on "/admin/config/development/configuration"
     And I press "Import all"
     And I wait for the progress bar to finish
-    Then I should see "The configuration was imported successfully"
+    Then I should not see "The configuration cannot be imported because it failed validation"
+    And I should see "The configuration was imported successfully"
 
   Scenario: Make sure site went back to the way it originally was
     Given I am on "/"

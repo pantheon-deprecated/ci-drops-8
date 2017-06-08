@@ -8,4 +8,4 @@ Feature: Performance Settings
     Given I am logged in as a user with the "administrator" role
     Given I am on "/admin/config/development/performance"
     And I press "Clear all caches"
-    Then I should see "Set the Page cache maximum age to 15 minutes"
+    Then I should not see "Set the Page cache maximum age to 15 minutes"
