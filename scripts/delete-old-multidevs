@@ -9,8 +9,8 @@ if [ -z "$MULTIDEV_DELETE_PATTERN" ] ; then
   exit 0
 fi
 
-# List all but the newest two environments.
-OLDEST_ENVIRONMENTS=$(terminus site environments --format=bash | sort -k2 | cut -d ' ' -f 1 | grep "$MULTIDEV_DELETE_PATTERN" | sed -e '$d' | sed -e '$d')
+# List all but the newest environment.
+OLDEST_ENVIRONMENTS=$(terminus site environments --format=bash | sort -k2 | cut -d ' ' -f 1 | grep "$MULTIDEV_DELETE_PATTERN" | sed -e '$d')
 
 # Exit if there are no environments to delete
 if [ -z "$OLDEST_ENVIRONMENTS" ] ; then

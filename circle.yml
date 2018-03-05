@@ -42,4 +42,4 @@ test:
     # delete-old-multidevs script will remove all but the two newest
     # environments at the beginning of each test run. Keeping these environments
     # around allows them to be inspected after the tests complete.
-    - terminus site delete-env --yes
+    # - terminus site delete-env --yes
