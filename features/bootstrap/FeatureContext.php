@@ -71,6 +71,7 @@ class FeatureContext extends RawDrupalContext implements Context, SnippetAccepti
       while ($refresh = $this->getSession()->getPage()->find('css', 'meta[http-equiv="Refresh"]')) {
         $content = $refresh->getAttribute('content');
         $url = str_replace('0; URL=', '', $content);
+        print "Follow meta-refresh to $url\n";
         $this->getSession()->visit($url);
       }
     }
