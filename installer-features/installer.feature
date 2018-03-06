@@ -28,5 +28,6 @@ Feature: Installer
     And I enter the value of the env var "ADMIN_PASSWORD" for "edit-account-pass-pass2"
     And I enter "john.doe@example.com" for "edit-account-mail"
     And I press "Save and continue"
+    And I have run the drush command "pm-uninstall -y big_pipe"
     And I visit "/"
     Then I should see "Welcome to Example Dot Com"

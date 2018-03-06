@@ -22,20 +22,13 @@ Feature: Configuration Manager
 
   @api
   Scenario: Import configuration files to undo previous change
-    Given I have run the drush command "config-import -y"
-    And I am on "/"
-    Then I should not see "A site slogan set through Drush"
+    Given I am logged in as a user with the "administrator" role
+    And I am on "/admin/config/development/configuration"
+    And I press "Import all"
+    And I wait for the progress bar to finish
+    Then I should not see "The configuration cannot be imported because it failed validation"
+    And I should see "The configuration was imported successfully"
 
-# The "Import all" step hangs indefinitely on Drupal 8.5.0.
-#  @api
-#  Scenario: Import configuration files to undo previous change
-#    Given I am logged in as a user with the "administrator" role
-#    And I am on "/admin/config/development/configuration"
-#    And I press "Import all"
-#    And I wait for the progress bar to finish
-#    Then I should not see "The configuration cannot be imported because it failed validation"
-#    And I should see "The configuration was imported successfully"
-#
-#  Scenario: Make sure site went back to the way it originally was
-#    Given I am on "/"
-#    Then I should not see "A site slogan set through Drush"
+  Scenario: Make sure site went back to the way it originally was
+    Given I am on "/"
+    Then I should not see "A site slogan set through Drush"
